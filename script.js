@@ -1,8 +1,9 @@
 // Lista de tus versos / mensajes
 const listaVersos = [
-  "\"Aquí va tu primer verso favorito de Charles Ans...\"",
-  "\"Aquí va el segundo verso con mucho amor...\"",
-  "\"El tercer verso especial para él...\""
+  "\"Se acabo el vacío cuando nos encontramos.\"",
+  "\"Y se abrió una puerta cuando nos acercamos.\"",
+  "\"Dos soledades o ninguna.\"",
+  "\"Y llenamos al mundo de felicidad.'💕\""
 ];
 
 // Mensaje final que aparecerá al terminar todos los versos
