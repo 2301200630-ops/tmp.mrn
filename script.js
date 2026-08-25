@@ -18,6 +18,10 @@ document.addEventListener("DOMContentLoaded", () => {
   const elementoTexto = document.getElementById('texto-verso');
   if (elementoTexto) {
     elementoTexto.innerText = listaVersos[indiceVerso];
+//Asegura que al dar click en la carta se abra
+const carta = document.getElementById('carta-overlay');
+if (carta){
+  carta.addEventListener('click', abrirCarta);
   }
 });
 
