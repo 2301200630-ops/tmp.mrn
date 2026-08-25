@@ -3,33 +3,35 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>hola te amo</title>
+  <title>hola t</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-  <!-- Lluvia de corazones -->
+  <!-- Contenedor al fondo para la lluvia de corazones -->
   <div id="fondo-corazones"></div>
 
-  <!-- Caja Interactiva Principal -->
-  <main class="caja-principal">
-    
-    <!-- Estado 1: La Carta Cerrada -->
-    <div id="vista-carta" class="pantalla-seccion">
-      <h2>¡Toca aquí para abrir tu carta! ✨</h2>
+  <!-- Pantalla inicial: Carta cerrada -->
+  <div id="carta-overlay" onclick="abrirCarta()">
+    <div class="carta-box">
+      <h2>¡Dale tap a la pantalla para abrir la carta! ✨</h2>
       <div class="emoji-sobre">💌</div>
-      <button type="button" class="btn-rosa">Abrir. 💘</button>
     </div>
+  </div>
 
-    <!-- Estado 2: Los Versos (Oculto al inicio) -->
-    <div id="vista-versos" class="pantalla-seccion oculto">
-      <h1>💖</h1>
+  <!-- Caja principal de texto (Rosa Pastel) -->
+  <main class="caja-principal">
+    <div class="contenido-verso">
+      <h1>Para mi novio Thon 💖</h1>
+      
+      <!-- Se muestra cada verso aquí -->
       <div class="versos">
-        <p id="texto-verso">Cargando...</p>
+        <p id="texto-verso">Cargando verso...</p>
       </div>
-      <button id="btn-continuar" type="button" class="btn-rosa">Continuar. 💝</button>
-    </div>
 
+      <!-- Botón para avanzar entre los versos -->
+      <button id="btn-continuar" onclick="siguienteVerso()">Continuar 🖤</button>
+    </div>
   </main>
 
   <script src="script.js"></script>
