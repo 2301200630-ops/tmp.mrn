@@ -1,0 +1,129 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #121212; /* Fondo negro goth */
+  color: #2b1b22;
+  font-family: 'Courier New', Courier, monospace;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  overflow: hidden;
+  position: relative;
+}
+
+/* Fondo para los corazones flotantes */
+#fondo-corazones {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* Pantalla inicial de la Carta (Sobre) */
+#carta-overlay {
+  position: relative;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: #ffd1dc;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 10;
+  cursor: pointer;
+  transition: none !important; /* Desaparece directo sin desvanecer */
+}
+
+.carta-box {
+  background-color: #ffd1dc; /* Rosa pastel suave */
+  color: #2b1b22;           /* Texto oscuro */
+  border: 3px dashed #ff94b4;
+  padding: 30px;
+  border-radius: 20px;
+  text-align: center;
+  max-width: 90%;
+  width: 380px;
+  box-shadow: 0 0 20px rgba(255, 183, 197, 0.4);
+}
+
+.emoji-sobre {
+  font-size: 80px;
+  margin-top: 20px;
+  display: block;
+}
+
+/* Caja Principal de Versos (Rosa Pastel Cute) */
+.caja-principal {
+  position: relative;
+  z-index: 10;
+  background-color: #ffd1dc; /* Rosa pastel suave */
+  color: #2b1b22;           /* Texto oscuro */
+  border: 3px solid #ffb7c5;
+  border-radius: 20px;
+  padding: 25px;
+  width: 90%;
+  max-width: 450px;
+  text-align: center;
+  box-shadow: 0 0 25px rgba(255, 183, 197, 0.5); /* Glow rosa */
+}
+
+.versos {
+  margin: 25px 0;
+  min-height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#texto-verso {
+  font-size: 1.15rem;
+  line-height: 1.6;
+  font-weight: bold;
+}
+
+/* Botón Continuar */
+#btn-continuar {
+  background-color: #2b1b22;
+  color: #ffd1dc;
+  border: 2px solid #ff94b4;
+  padding: 10px 22px;
+  font-size: 1rem;
+  font-family: inherit;
+  font-weight: bold;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: transform 0.2s, background-color 0.2s;
+}
+
+#btn-continuar:hover {
+  transform: scale(1.05);
+  background-color: #3d2730;
+}
+
+/* Animación de Corazones Flotantes */
+.corazon-flotante {
+  position: absolute;
+  bottom: -30px;
+  pointer-events: none;
+  animation: flotarHaciaArriba linear forwards;
+}
+
+@keyframes flotarHaciaArriba {
+  0% {
+    transform: translateY(0) scale(0.8) rotate(0deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-105vh) scale(1.2) rotate(360deg);
+    opacity: 0;
+  }
+}
