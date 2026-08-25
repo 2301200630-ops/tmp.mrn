@@ -1,75 +1,68 @@
 const listaVersos = [
-  "\"Y de blanco te esperé en el altar.\"",
+"\"Y de blanco te esperé en el altar.\"",
   "\"Tú eres lo que siempre yo soñé.\"",
   "\"My love, my one and only love.\"",
   "\"No hay ninguna razón para no amarte como te amo.\""
   "\"Tú y yo en cada eternidad..💕\"
 ];
 
-const mensajeFinal = "Gracias por ser mi lugar favorito en el mundo. Te amo con todo mi corazón. 💓(Ya puedes cerrar esta pestaña)";
+const mensajeFinal = "Gracias por ser mi lugar favorito en el mundo. Te amo. 💕(Ya puedes cerrar esta pestaña)";
 
 let indiceVerso = 0;
-let intervaloCorazones;
+let intervaloCorazones = null;
 let cartaAbierta = false;
 
 document.addEventListener("DOMContentLoaded", () => {
-  const carta = document.getElementById('carta-overlay');
+  const cajaPrincipal = document.querySelector('.caja-principal');
+  const vistaCarta = document.getElementById('vista-carta');
+  const vistaVersos = document.getElementById('vista-versos');
   const btnContinuar = document.getElementById('btn-continuar');
   const elementoTexto = document.getElementById('texto-verso');
 
-  // Colocar el primer verso
+  // Inicializar texto del primer verso
   if (elementoTexto && listaVersos.length > 0) {
     elementoTexto.innerText = listaVersos[0];
   }
 
-  // Función para abrir la carta desde cualquier lugar
-  function abrirDesdeCualquierLugar(evento) {
-    // Si la carta ya se abrió, no hacer nada más aquí
+  // Función para abrir la carta
+  function abrirCarta() {
     if (cartaAbierta) return;
+    cartaAbierta = true;
 
-    // Quitar la pantalla inicial por completo
-    if (carta) {
-      carta.style.setProperty('display', 'none', 'important');
-    }
+    // Cambiar pantallas
+    vistaCarta.classList.add('oculto');
+    vistaVersos.classList.remove('oculto');
 
-    // Iniciar los corazones de fondo
+    // Iniciar lluvia de corazones
     if (!intervaloCorazones) {
       intervaloCorazones = setInterval(crearCorazon, 350);
     }
-
-    cartaAbierta = true;
   }
 
-  // Escuchar el clic en CUALQUIER LUGAR de la ventana
-  window.addEventListener('click', abrirDesdeCualquierLugar);
-  window.addEventListener('touchstart', abrirDesdeCualquierLugar);
+  // Hacer clic en la caja abre la carta
+  cajaPrincipal.addEventListener('click', (e) => {
+    if (!cartaAbierta) {
+      abrirCarta();
+    }
+  });
 
-  // Evento para el botón continuar (evitando que choque con el clic de abrir)
-  if (btnContinuar) {
-    btnContinuar.addEventListener('click', (e) => {
-      // Evitamos que el clic del botón vuelva a disparar eventos raros
-      e.stopPropagation();
+  // Botón Continuar
+  btnContinuar.addEventListener('click', (e) => {
+    e.stopPropagation(); // Evita interferencias de clics
 
-      // Si aún no se había abierto la carta por alguna razón, la abre
-      if (!cartaAbierta) {
-        abrirDesdeCualquierLugar();
-        return;
-      }
+    indiceVerso++;
 
-      indiceVerso++;
-
-      if (indiceVerso < listaVersos.length) {
-        elementoTexto.innerText = listaVersos[indiceVerso];
-      } else if (indiceVerso === listaVersos.length) {
-        elementoTexto.innerText = mensajeFinal;
-        btnContinuar.innerText = "Cerrar. 💖";
-      } else {
-        btnContinuar.disabled = true;
-        btnContinuar.style.opacity = "0.5";
-        btnContinuar.innerText = "¡Te amo! 💕";
-      }
-    });
-  }
+    if (indiceVerso < listaVersos.length) {
+      elementoTexto.innerText = listaVersos[indiceVerso];
+    } else if (indiceVerso === listaVersos.length) {
+      elementoTexto.innerText = mensajeFinal;
+      btnContinuar.innerText = "Cerrar 💖";
+    } else {
+      btnContinuar.disabled = true;
+      btnContinuar.style.opacity = "0.5";
+      btnContinuar.innerText = "Te amo. 🫶🏼";
+    }
+  });
 });
 
 function crearCorazon() {
@@ -79,7 +72,7 @@ function crearCorazon() {
   const corazon = document.createElement('div');
   corazon.classList.add('corazon-flotante');
   
-  const iconos = ['💗', '💞', '💖', '💕', '💘'];
+  const iconos = ['💞', '💘', '💖', '💗', '💕'];
   corazon.innerText = iconos[Math.floor(Math.random() * iconos.length)];
   
   corazon.style.left = Math.random() * 100 + 'vw';
