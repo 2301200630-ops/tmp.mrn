@@ -5,7 +5,7 @@
 }
 
 body {
-  background-color: #121212;
+  background-color: #121212; /* Fondo negro goth */
   color: #ffffff;
   font-family: 'Courier New', Courier, monospace;
   display: flex;
@@ -16,7 +16,7 @@ body {
   position: relative;
 }
 
-/* Lluvia de corazones al fondo */
+/* Fondo para los corazones flotantes */
 #fondo-corazones {
   position: fixed;
   top: 0;
@@ -27,7 +27,7 @@ body {
   pointer-events: none;
 }
 
-/* Carta inicial */
+/* Pantalla inicial de la Carta (Sobre) */
 #carta-overlay {
   position: fixed;
   top: 0;
@@ -40,45 +40,76 @@ body {
   align-items: center;
   z-index: 100;
   cursor: pointer;
-  transition: none !important;
+  transition: none !important; /* Desaparece directo sin desvanecer */
 }
 
 .carta-box {
-  border: 2px dashed #ffb7c5;
-  background-color: #222;
+  background-color: #ffd1dc; /* Rosa pastel suave */
+  color: #2b1b22;           /* Texto oscuro */
+  border: 3px dashed #ff94b4;
   padding: 30px;
-  border-radius: 16px;
+  border-radius: 20px;
   text-align: center;
   max-width: 90%;
   width: 380px;
+  box-shadow: 0 0 20px rgba(255, 183, 197, 0.4);
 }
 
-.kitty-img {
-  width: 120px;
-  margin-top: 15px;
+.emoji-sobre {
+  font-size: 80px;
+  margin-top: 20px;
+  display: block;
 }
 
-/* Caja de texto principal */
+/* Caja Principal de Versos (Rosa Pastel Cute) */
 .caja-principal {
   position: relative;
   z-index: 10;
-  background: rgba(30, 30, 30, 0.95);
-  border: 2px solid #ffb7c5;
-  border-radius: 16px;
+  background-color: #ffd1dc; /* Rosa pastel suave */
+  color: #2b1b22;           /* Texto oscuro */
+  border: 3px solid #ffb7c5;
+  border-radius: 20px;
   padding: 25px;
   width: 90%;
   max-width: 450px;
   text-align: center;
-  box-shadow: 0 0 20px rgba(255, 183, 197, 0.2);
+  box-shadow: 0 0 25px rgba(255, 183, 197, 0.5); /* Glow rosa */
 }
 
 .versos {
-  margin: 20px 0;
-  line-height: 1.6;
-  font-size: 1.1rem;
+  margin: 25px 0;
+  min-height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-/* Corazones animados */
+#texto-verso {
+  font-size: 1.15rem;
+  line-height: 1.6;
+  font-weight: bold;
+}
+
+/* Botón Continuar */
+#btn-continuar {
+  background-color: #2b1b22;
+  color: #ffd1dc;
+  border: 2px solid #ff94b4;
+  padding: 10px 22px;
+  font-size: 1rem;
+  font-family: inherit;
+  font-weight: bold;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: transform 0.2s, background-color 0.2s;
+}
+
+#btn-continuar:hover {
+  transform: scale(1.05);
+  background-color: #3d2730;
+}
+
+/* Animación de Corazones Flotantes */
 .corazon-flotante {
   position: absolute;
   bottom: -30px;
