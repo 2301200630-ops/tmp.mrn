@@ -4,34 +4,228 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>My Love 💕</title>
-  <link rel="stylesheet" href="style.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background-color: #121212;
+      color: #2b1b22;
+      font-family: 'Courier New', Courier, monospace;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      overflow: hidden;
+      position: relative;
+    }
+
+    /* Fondo para la lluvia de corazones */
+    #fondo-corazones {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      z-index: 1;
+      pointer-events: none;
+    }
+
+    /* Caja Principal (Rosa Pastel Cute) */
+    .caja-principal {
+      position: relative;
+      z-index: 10;
+      background-color: #ffd1dc;
+      border: 3px solid #ffb7c5;
+      border-radius: 20px;
+      padding: 25px;
+      width: 90%;
+      max-width: 450px;
+      text-align: center;
+      box-shadow: 0 0 25px rgba(255, 183, 197, 0.5);
+      transition: all 0.3s ease;
+    }
+
+    #titulo-pantalla {
+      font-size: 1.3rem;
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+
+    .area-contenido {
+      margin: 15px 0;
+      min-height: 120px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* Emoji gigante para la vista inicial */
+    .emoji-gigante {
+      font-size: clamp(120px, 25vw, 180px);
+      line-height: 1;
+      margin: 10px 0;
+      display: block;
+      cursor: pointer;
+      user-select: none;
+      -webkit-tap-highlight-color: transparent;
+      transition: transform 0.2s ease;
+    }
+
+    .emoji-gigante:active {
+      transform: scale(0.95);
+    }
+
+    /* Formato del texto de los versos */
+    .texto-verso {
+      font-size: 1.15rem;
+      line-height: 1.6;
+      font-weight: bold;
+    }
+
+    /* Botón Rosa / Goth */
+    .btn-rosa {
+      background-color: #2b1b22;
+      color: #ffd1dc;
+      border: 2px solid #ff94b4;
+      padding: 12px 24px;
+      font-size: 1rem;
+      font-family: inherit;
+      font-weight: bold;
+      border-radius: 12px;
+      cursor: pointer;
+      margin-top: 10px;
+      user-select: none;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .btn-rosa:hover {
+      background-color: #3d2730;
+    }
+
+    /* Animación de los corazones flotantes */
+    .corazon-flotante {
+      position: absolute;
+      bottom: -30px;
+      pointer-events: none;
+      animation: flotarHaciaArriba linear forwards;
+    }
+
+    @keyframes flotarHaciaArriba {
+      0% {
+        transform: translateY(0) scale(0.8) rotate(0deg);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(-105vh) scale(1.2) rotate(360deg);
+        opacity: 0;
+      }
+    }
+  </style>
 </head>
 <body>
 
-  <!-- Lluvia de corazones -->
+  <!-- Contenedor al fondo para corazones -->
   <div id="fondo-corazones"></div>
 
-  <!-- Caja Interactiva Principal -->
+  <!-- Caja Unificada -->
   <main class="caja-principal">
+    <h1 id="titulo-pantalla">Toca aquí para abrir tu carta ✨</h1>
     
-    <!-- Estado 1: La Carta Cerrada -->
-    <div id="vista-carta" class="pantalla-seccion">
-      <h2>¡Toca aquí para abrir tu carta! ✨</h2>
-      <div class="emoji-sobre">💌</div>
-      <button type="button" class="btn-rosa">Abrir.💞</button>
+    <div class="area-contenido" id="contenedor-dinamico">
+      <!-- Inicia con el emoji GIGANTE -->
+      <span class="emoji-gigante" id="emoji-carta">💌</span>
     </div>
 
-    <!-- Estado 2: Los Versos (Oculto al inicio) -->
-    <div id="vista-versos" class="pantalla-seccion oculto">
-      <h1>🎀</h1>
-      <div class="versos">
-        <p id="texto-verso">Cargando...</p>
-      </div>
-      <button id="btn-continuar" type="button" class="btn-rosa">Continuar. 💘</button>
-    </div>
-
+    <button id="btn-accion" type="button" class="btn-rosa">Abrir carta. 💞 </button>
   </main>
 
-  <script src="script.js"></script>
+  <script>
+    // Agrega tus versos de Charles Ans aquí
+    const listaVersos = [
+      "\"Y de blanco te esperé en el altar.\"",
+  "\"Tú eres lo que siempre yo soñé.\"",
+  "\"My love, my one and only love.\"",
+  "\"No hay ninguna razón para no amarte como te amo.\""
+  "\"Tú y yo en cada eternidad..💕\"
+    ];
+
+    const mensajeFinal = "Gracias por ser mi lugar favorito en el mundo. Te amo. 💗 (Ya puedes cerrar esta pestaña)";
+
+    let estado = "inicial"; // Estados: 'inicial', 'versos', 'final'
+    let indiceVerso = 0;
+    let intervaloCorazones = null;
+
+    const btnAccion = document.getElementById('btn-accion');
+    const tituloPantalla = document.getElementById('titulo-pantalla');
+    const contenedorDinamico = document.getElementById('contenedor-dinamico');
+    const emojiCarta = document.getElementById('emoji-carta');
+
+    // Función principal para iniciar la secuencia
+    function iniciarCarta() {
+      if (estado !== "inicial") return;
+
+      estado = "versos";
+      tituloPantalla.innerText = "Para mí único gran amor. 💓";
+      
+      // Reemplaza el emoji gigante por el primer verso
+      contenedorDinamico.innerHTML = `<p class="texto-verso" id="texto-verso">${listaVersos[0]}</p>`;
+      btnAccion.innerText = "Continuar. 💝";
+
+      // Inicia la lluvia de corazones de fondo
+      if (!intervaloCorazones) {
+        intervaloCorazones = setInterval(crearCorazon, 350);
+      }
+    }
+
+    // Tanto dar clic al emoji gigante como al botón activa la carta
+    emojiCarta.addEventListener('click', iniciarCarta);
+
+    btnAccion.addEventListener('click', () => {
+      if (estado === "inicial") {
+        iniciarCarta();
+      } 
+      else if (estado === "versos") {
+        indiceVerso++;
+        const elementoTexto = document.getElementById('texto-verso');
+        
+        if (indiceVerso < listaVersos.length) {
+          elementoTexto.innerText = listaVersos[indiceVerso];
+        } else {
+          estado = "final";
+          elementoTexto.innerText = mensajeFinal;
+          btnAccion.innerText = "Cerrar. 💖";
+        }
+      } 
+      else if (estado === "final") {
+        btnAccion.disabled = true;
+        btnAccion.style.opacity = "0.5";
+        btnAccion.innerText = "¡Te amo! 💕";
+      }
+    });
+
+    // Lógica para crear corazones flotantes
+    function crearCorazon() {
+      const fondo = document.getElementById('fondo-corazones');
+      if (!fondo) return;
+
+      const corazon = document.createElement('div');
+      corazon.classList.add('corazon-flotante');
+      
+      const iconos = ['💕', '💞', '💖', '💗', '💓'];
+      corazon.innerText = iconos[Math.floor(Math.random() * iconos.length)];
+      
+      corazon.style.left = Math.random() * 100 + 'vw';
+      corazon.style.fontSize = (Math.random() * 18 + 14) + 'px';
+      corazon.style.animationDuration = (Math.random() * 3 + 3) + 's';
+      
+      fondo.appendChild(corazon);
+      
+      setTimeout(() => corazon.remove(), 6000);
+    }
+  </script>
 </body>
 </html>
