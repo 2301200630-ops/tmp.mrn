@@ -1,0 +1,98 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #121212;
+  color: #ffffff;
+  font-family: 'Courier New', Courier, monospace;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  overflow: hidden;
+  position: relative;
+}
+
+/* Lluvia de corazones al fondo */
+#fondo-corazones {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* Carta inicial */
+#carta-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: #1a1a1a;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 100;
+  cursor: pointer;
+  transition: none !important;
+}
+
+.carta-box {
+  border: 2px dashed #ffb7c5;
+  background-color: #222;
+  padding: 30px;
+  border-radius: 16px;
+  text-align: center;
+  max-width: 90%;
+  width: 380px;
+}
+
+.kitty-img {
+  width: 120px;
+  margin-top: 15px;
+}
+
+/* Caja de texto principal */
+.caja-principal {
+  position: relative;
+  z-index: 10;
+  background: rgba(30, 30, 30, 0.95);
+  border: 2px solid #ffb7c5;
+  border-radius: 16px;
+  padding: 25px;
+  width: 90%;
+  max-width: 450px;
+  text-align: center;
+  box-shadow: 0 0 20px rgba(255, 183, 197, 0.2);
+}
+
+.versos {
+  margin: 20px 0;
+  line-height: 1.6;
+  font-size: 1.1rem;
+}
+
+/* Corazones animados */
+.corazon-flotante {
+  position: absolute;
+  bottom: -30px;
+  pointer-events: none;
+  animation: flotarHaciaArriba linear forwards;
+}
+
+@keyframes flotarHaciaArriba {
+  0% {
+    transform: translateY(0) scale(0.8) rotate(0deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-105vh) scale(1.2) rotate(360deg);
+    opacity: 0;
+  }
+}
