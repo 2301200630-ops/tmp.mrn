@@ -5,7 +5,7 @@
 }
 
 body {
-  background-color: #121212; /* Fondo negro goth */
+  background-color: #121212;
   color: #ffffff;
   font-family: 'Courier New', Courier, monospace;
   display: flex;
@@ -16,7 +16,6 @@ body {
   position: relative;
 }
 
-/* Fondo para los corazones flotantes */
 #fondo-corazones {
   position: fixed;
   top: 0;
@@ -27,7 +26,7 @@ body {
   pointer-events: none;
 }
 
-/* Pantalla inicial de la Carta (Sobre) */
+/* Overlay inicial */
 #carta-overlay {
   position: fixed;
   top: 0;
@@ -38,14 +37,13 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 100;
+  z-index: 9999; /* Por encima de todo */
   cursor: pointer;
-  transition: none !important; /* Desaparece directo sin desvanecer */
 }
 
 .carta-box {
-  background-color: #ffd1dc; /* Rosa pastel suave */
-  color: #2b1b22;           /* Texto oscuro */
+  background-color: #ffd1dc;
+  color: #2b1b22;
   border: 3px dashed #ff94b4;
   padding: 30px;
   border-radius: 20px;
@@ -61,19 +59,19 @@ body {
   display: block;
 }
 
-/* Caja Principal de Versos (Rosa Pastel Cute) */
+/* Caja de versos */
 .caja-principal {
   position: relative;
   z-index: 10;
-  background-color: #ffd1dc; /* Rosa pastel suave */
-  color: #2b1b22;           /* Texto oscuro */
+  background-color: #ffd1dc;
+  color: #2b1b22;
   border: 3px solid #ffb7c5;
   border-radius: 20px;
   padding: 25px;
   width: 90%;
   max-width: 450px;
   text-align: center;
-  box-shadow: 0 0 25px rgba(255, 183, 197, 0.5); /* Glow rosa */
+  box-shadow: 0 0 25px rgba(255, 183, 197, 0.5);
 }
 
 .versos {
@@ -90,26 +88,20 @@ body {
   font-weight: bold;
 }
 
-/* Botón Continuar */
 #btn-continuar {
   background-color: #2b1b22;
   color: #ffd1dc;
   border: 2px solid #ff94b4;
-  padding: 10px 22px;
+  padding: 12px 24px;
   font-size: 1rem;
   font-family: inherit;
   font-weight: bold;
   border-radius: 12px;
   cursor: pointer;
-  transition: transform 0.2s, background-color 0.2s;
+  position: relative;
+  z-index: 20;
 }
 
-#btn-continuar:hover {
-  transform: scale(1.05);
-  background-color: #3d2730;
-}
-
-/* Animación de Corazones Flotantes */
 .corazon-flotante {
   position: absolute;
   bottom: -30px;
