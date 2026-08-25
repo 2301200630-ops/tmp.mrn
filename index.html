@@ -8,28 +8,28 @@
 </head>
 <body>
 
-  <!-- Fondo para corazones -->
+  <!-- Lluvia de corazones -->
   <div id="fondo-corazones"></div>
 
-  <!-- Pantalla de la carta inicial -->
-  <div id="carta-overlay">
-    <div class="carta-box">
-      <h2>¡Dale tap a la pantalla para abrir la carta! ✨</h2>
-      <div class="emoji-sobre">💌</div>
-    </div>
-  </div>
-
-  <!-- Caja principal -->
+  <!-- Caja Interactiva Principal -->
   <main class="caja-principal">
-    <div class="contenido-verso">
+    
+    <!-- Estado 1: La Carta Cerrada -->
+    <div id="vista-carta" class="pantalla-seccion">
+      <h2>¡Toca aquí para abrir tu carta! ✨</h2>
+      <div class="emoji-sobre">💌</div>
+      <button type="button" class="btn-rosa">Abrir.💞</button>
+    </div>
+
+    <!-- Estado 2: Los Versos (Oculto al inicio) -->
+    <div id="vista-versos" class="pantalla-seccion oculto">
       <h1>🎀</h1>
-      
       <div class="versos">
         <p id="texto-verso">Cargando...</p>
       </div>
-
-      <button id="btn-continuar" type="button">Continuar. 💘</button>
+      <button id="btn-continuar" type="button" class="btn-rosa">Continuar. 💘</button>
     </div>
+
   </main>
 
   <script src="script.js"></script>
