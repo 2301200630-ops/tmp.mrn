@@ -38,10 +38,9 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 9999 !important; /*<---Esto asegura que esté al frente de todo*/
+  z-index: 100;
   cursor: pointer;
-  pointer-events: auto !important; /*Asegura que reciba el click*/
-  transition: auto !important; /* Desaparece directo sin desvanecer */
+  transition: none !important; /* Desaparece directo sin desvanecer */
 }
 
 .carta-box {
@@ -54,7 +53,6 @@ body {
   max-width: 90%;
   width: 380px;
   box-shadow: 0 0 20px rgba(255, 183, 197, 0.4);
-  pointer-events: none;
 }
 
 .emoji-sobre {
