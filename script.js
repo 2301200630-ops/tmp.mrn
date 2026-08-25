@@ -1,9 +1,10 @@
 // Lista de tus versos / mensajes
 const listaVersos = [
-  "\"Se acabo el vacío cuando nos encontramos.\"",
-  "\"Y se abrió una puerta cuando nos acercamos.\"",
-  "\"Dos soledades o ninguna.\"",
-  "\"Y llenamos al mundo de felicidad.'💕\""
+  "\"Y de blanco te esperé en el altar.\"",
+  "\"Tú eres lo que siempre yo soñé.\"",
+  "\"My love, my one and only love.\"",
+  "\"No hay ninguna razón para no amarte como te amo.\""
+  "\"Tú y yo en cada eternidad..💕\"
 ];
 
 // Mensaje final que aparecerá al terminar todos los versos
