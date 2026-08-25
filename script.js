@@ -1,4 +1,4 @@
-// Lista de tus versos / mensajes
+// Lista de tus versos / canciones
 const listaVersos = [
   "\"Y de blanco te esperé en el altar.\"",
   "\"Tú eres lo que siempre yo soñé.\"",
@@ -8,23 +8,20 @@ const listaVersos = [
 ];
 
 // Mensaje final que aparecerá al terminar todos los versos
-const mensajeFinal = "Gracias por ser mi lugar favorito en el mundo. Te amo con todo mi corazón.💕 (Ya puedes cerrar esta pestaña)";
+const mensajeFinal = "Gracias por ser mi lugar favorito en el mundo. Te amo con todo mi corazón. 💕 (Ya puedes cerrar esta pestaña)";
 
 let indiceVerso = 0;
 let intervaloCorazones;
 
-// Cargar el primer verso al iniciar
+// Cargar el primer verso al iniciar la página
 document.addEventListener("DOMContentLoaded", () => {
   const elementoTexto = document.getElementById('texto-verso');
   if (elementoTexto) {
     elementoTexto.innerText = listaVersos[indiceVerso];
-//Asegura que al dar click en la carta se abra
-const carta = document.getElementById('carta-overlay');
-if (carta){
-  carta.addEventListener('click', abrirCarta);
   }
 });
 
+// Generar corazones flotantes al fondo
 function crearCorazon() {
   const fondo = document.getElementById('fondo-corazones');
   if (!fondo) return;
@@ -46,37 +43,35 @@ function crearCorazon() {
   }, 6000);
 }
 
+// Abrir carta al dar tap
 function abrirCarta() {
   const carta = document.getElementById('carta-overlay');
   
-  // Ocultar carta directo al dar tap
+  // Ocultar carta al instante
   carta.style.display = 'none';
 
-  // Iniciar la lluvia de corazones de fondo
+  // Iniciar la lluvia de corazones
   intervaloCorazones = setInterval(crearCorazon, 350);
 }
 
-// Lógica para avanzar en los versos y mostrar el mensaje final
+// Cambiar versos y mostrar mensaje final
 function siguienteVerso() {
   const elementoTexto = document.getElementById('texto-verso');
   const boton = document.getElementById('btn-continuar');
 
   indiceVerso++;
 
-  // Si todavía quedan versos en la lista
   if (indiceVerso < listaVersos.length) {
     elementoTexto.innerText = listaVersos[indiceVerso];
   } 
-  // Cuando se acaban los versos, muestra el mensaje final
   else if (indiceVerso === listaVersos.length) {
     elementoTexto.innerText = mensajeFinal;
-    boton.innerText = "Cerrar 💖";
+    boton.innerText = "Cerrar. 💖";
   } 
-  // Si da clic al botón "Cerrar", intenta cerrar la pestaña o desactiva el botón
   else {
     boton.disabled = true;
     boton.style.opacity = "0.5";
-    boton.innerText = "Ya puedes cerrar esta pestañita, espero que te haya gustado.💕";
-    window.close(); // Intenta cerrar la pestaña en navegadores que lo permitan
+    boton.innerText = "¡Te amo! 💘";
+    window.close();
   }
 }
