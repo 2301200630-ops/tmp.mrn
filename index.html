@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>My Love. 💕</title>
+  <title>Para Thon 🖤</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -13,21 +13,29 @@
 
   <!-- Pantalla inicial: Carta cerrada -->
   <div id="carta-overlay" onclick="abrirCarta()">
-    <div class="emoji-sobre">💌</div>
+    <div class="carta-box">
+      <h2>¡Dale tap a la pantalla para abrir la carta! ✨</h2>
+    <!-- Estado 1: La Carta Cerrada -->
+    <div id="vista-carta" class="pantalla-seccion">
       <h2>¡Toca aquí para abrir tu carta! ✨</h2>
-      <button type="button"class"btn-rosa">Abrir.💘</button>
+      <div class="emoji-sobre">💌</div>
+      <button type="button" class="btn-rosa">Abrir. 💘</button>
     </div>
   </div>
 
-  <!-- Estado 2: Los Versos (Oculto al inicio) -->
-    <div id="vista-versos" class="pantalla-seccion oculto">
-      <h1>💖</h1>
+  <!-- Caja de texto principal (versos) -->
+  <main class="caja-principal">
+    <div class="contenido-verso">
+      <h1>Mi Negro.💖</h1>
+      
       <div class="versos">
-        <p id="texto-verso">Cargando...</p>
+        <p>"Eres Andrómeda, eres anestesia,"</p>
+        <p>"Supongo que eres parte de mis días."</p>
+        <p>"Eres un tanto porciento en mi vida,"</p>
       </div>
-      <button id="btn-continuar" type="button" class="btn-rosa">Continuar. 💝</button>
     </div>
-</main>
+  </main>
+
   <script src="script.js"></script>
 </body>
 </html>
